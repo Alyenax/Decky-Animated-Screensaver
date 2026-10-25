@@ -1,0 +1,37 @@
+{
+  "schema": "das-public-release-validation-v1",
+  "version": "1.0.0",
+  "date": "2026-10-25",
+  "backend": {
+    "tests": 504,
+    "passed": 486,
+    "skipped": 18,
+    "failed": 0
+  },
+  "frontend": {
+    "passed": 91,
+    "failed": 0
+  },
+  "player": {
+    "passed": 17,
+    "failed": 0
+  },
+  "player_debug": {
+    "passed": 9,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "documentation": {
+    "markdown_files": 23,
+    "html_pages": 17,
+    "local_links": 477,
+    "errors": [],
+    "media_hashes": 5,
+    "thumbnail_sources_verified": 12,
+    "em_dash_count": 0
+  },
+  "browser_still_motion": "not completed: browser process could not launch on this host",
+  "hardware_acceptance": "Native SteamOS/Decky focus, installation/restart and physical JSAUX playback require acceptance on the target devices.",
+  "integration_skips": "18 optional tests require an explicit compatible GCA checkout or isolated video tools."
+}

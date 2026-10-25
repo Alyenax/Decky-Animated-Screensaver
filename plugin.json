@@ -1,0 +1,15 @@
+{
+  "name": "Animated Screensaver",
+  "author": "Alyenax",
+  "flags": [
+    "root"
+  ],
+  "api_version": 1,
+  "publish": {
+    "tags": [
+      "customization",
+      "utility"
+    ],
+    "description": "Your game artwork, animated in Steam's screensaver. Library, preview and preparation inside Decky."
+  }
+}

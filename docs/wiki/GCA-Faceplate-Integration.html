@@ -1,0 +1,126 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Add a JSAUX Faceplate with GabeCubeAura · Animated Screensaver</title><style>:root{color-scheme:dark;--bg:#0c1319;--panel:#151f28;--line:#30404a;--ink:#edf1ee;--muted:#a4b5bd;--link:#a4e4d6}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,sans-serif}a{color:var(--link);text-underline-offset:3px}header{border-bottom:1px solid var(--line);background:#101a22;position:sticky;top:0;z-index:5}header>div{max-width:1480px;margin:auto;padding:16px 24px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}.brand{font-size:19px;font-weight:750;text-decoration:none;margin-right:auto}.badge{display:inline-block;font-size:12px;border:1px solid #8c713b;color:#f3d391;padding:1px 9px;border-radius:12px;margin-left:10px;font-weight:500}nav{display:flex;gap:18px}nav a{text-decoration:none}.support{background:#eda68d;color:#241a18;padding:9px 15px;border-radius:5px;text-decoration:none;font-weight:750}.layout{display:grid;grid-template-columns:235px minmax(0,1fr);max-width:1440px;margin:auto}aside{padding:25px 15px;align-self:start;position:sticky;top:84px;height:calc(100vh - 84px);overflow:auto;border-right:1px solid var(--line);font-size:14px}aside a{display:block;color:var(--muted);padding:6px 12px;text-decoration:none;border-radius:5px}aside a[aria-current]{background:#1d3739;color:var(--link)}main{padding:32px 42px 70px;max-width:1100px;min-width:0}h1,h2,h3{line-height:1.25;scroll-margin-top:110px}h1{font-size:34px;margin:0 0 24px}h2{font-size:24px;border-bottom:1px solid var(--line);padding-bottom:10px;margin:34px 0 18px}h3{font-size:19px}p{margin:0 0 16px}li{margin:7px 0}img{max-width:100%;height:auto;display:block;border-radius:6px;border:1px solid var(--line);margin:20px 0 10px}table{border-collapse:collapse;width:100%;margin:20px 0;font-size:14px}th,td{padding:12px;border:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:var(--panel)}blockquote{border-left:3px solid #c09a52;background:#45391c30;color:#e4d6b4;margin:20px 0;padding:10px 16px}blockquote p{margin:0}code{background:var(--panel);padding:2px 5px;border-radius:3px}footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.anchor-link{text-decoration:none}.gif-link{display:block}.gif-link:focus{outline:3px solid var(--link)}@media(max-width:900px){header>div{padding:12px 16px;gap:12px}.layout{grid-template-columns:200px minmax(0,1fr)}main{padding:26px}nav{gap:14px;font-size:14px}}@media(max-width:650px){header{position:static}.brand{font-size:17px}header>div{gap:12px}nav{order:3;width:100%}.layout{display:block}aside{position:static;height:auto;max-height:180px;columns:2;border-right:0;border-bottom:1px solid var(--line);padding:12px 6px;font-size:13px}aside a{break-inside:avoid}main{padding:24px 16px 50px}h1{font-size:28px}table{font-size:13px}th,td{padding:8px}.support{font-size:13px;padding:8px 12px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}</style></head><body><header><div><a class="brand" href="index.html">Decky Animated Screensaver<span class="badge">1.0.0</span></a><nav aria-label="Documentation"><a href="README.html">README</a><a href="index.html">Wiki</a><a href="Media.html">GIFs</a><a href="CHANGELOG.html">Changelog</a></nav><a class="support" href="https://ko-fi.com/alyenax">♥ Support on Ko-fi ↗</a></div></header><div class="layout"><aside aria-label="Wiki pages"><a href="index.html" >Wiki home</a><a href="README.html" >README</a><a href="Installation.html" >Installation</a><a href="Setup.html" >Setup</a><a href="Games-and-Collection.html" >Games and collection</a><a href="Artwork.html" >Artwork</a><a href="Preparation.html" >Preparation</a><a href="Preview-and-Steam.html" >Preview and Steam</a><a href="Playback.html" >Playback</a><a href="GCA-Faceplate-Integration.html" aria-current="page">Optional Faceplate</a><a href="Settings-and-Backups.html" >Settings and backups</a><a href="Troubleshooting.html" >Troubleshooting</a><a href="Privacy-and-Credits.html" >Privacy and credits</a><a href="Media.html" >GIF walkthroughs</a><a href="CHANGELOG.html" >Changelog</a></aside><main><h1 id="add-a-jsaux-faceplate-with-gabecubeaura">Add a JSAUX Faceplate with GabeCubeAura</h1>
+<p>Decky Animated Screensaver (DAS) creates a game-artwork collection for your
+television or Steam Deck display. On a Steam Machine, the optional
+GabeCubeAura (GCA) integration can show separately chosen game images on a JSAUX Pixel
+Matrix Faceplate while the television plays the collection.</p>
+<p><strong>Television playback works without GCA or a Faceplate.</strong> Add the integration
+when you want the second display; your TV collection remains useful on its own.</p>
+<p><img src="media/das-tv-faceplate.gif" alt="Illustrated television and Steam Machine Faceplate showing coordinated game scenes"></p>
+<p><em>Same games, different artwork: animated backgrounds on TV, separately selected
+images on the Faceplate, and their colours extended onto the light bar.
+Scene changes are coordinated for this illustration.</em></p>
+<h2 id="what-you-need">What you need</h2>
+<ul>
+<li>Decky Animated Screensaver installed through Decky Loader.</li>
+<li>For Faceplate output, a connected JSAUX Pixel Matrix Faceplate and a GCA
+version that supports the collection integration.</li>
+<li>Prepared artwork for your selected games. Online artwork browsing uses your
+personal SteamGridDB key; prepared media can be reused offline.</li>
+</ul>
+<p>For connection, power and brightness, use the
+<a href="https://alyenax.github.io/gabecubeaura-concept/guide/wiki/Faceplate.html">GCA Faceplate guide</a>. GCA controls the
+matrix hardware; DAS chooses and prepares the screensaver collection.</p>
+<h2 id="choose-the-games-and-artwork">Choose the games and artwork</h2>
+<p>Open <strong>My collection</strong> or <strong>Add games</strong> in DAS. Add the games you want, then
+choose their backgrounds, covers and logos. A television background and a
+Faceplate image can use different framing, so a good TV crop does not have
+to become a cramped matrix crop.</p>
+<p>Use <strong>Choose Faceplate JSAUX image</strong> for a game&#39;s matrix image. Its image
+selection view includes the Faceplate crop preview. Changing artwork choices
+does not immediately rebuild or install the collection.</p>
+<p>For an ordered presentation, open <strong>Manage collection → Reorder my
+collection</strong>. Press X to enter reordering, move the focused game with the
+arrows, then press X to save. Update the collection afterwards to apply the
+order to the installed player. Shuffle remains a separate playback choice.</p>
+<h2 id="enable-the-optional-output">Enable the optional output</h2>
+<p>Connect the Faceplate and open <strong>Settings → Faceplate JSAUX</strong> in DAS. Enable
+<strong>Show collection on Faceplate JSAUX</strong>. The section appears when the required
+hardware and GCA integration are available.</p>
+<p>Choose <strong>Keep square · side borders</strong> to preserve the whole square image, or
+<strong>Fill Faceplate JSAUX · 64 × 54 crop</strong> to fill the matrix without stretching.
+You can choose a Faceplate transition such as Fade, Wipe, Slide or Dissolve.</p>
+<p>These choices need a collection update before they become part of the
+installed screensaver. The Faceplate preview shows prepared media without
+sending it to the device.</p>
+<h2 id="choose-how-the-displays-play">Choose how the displays play</h2>
+<h3 id="extend-the-faceplate-colours-onto-the-light-bar">Extend the Faceplate colours onto the light bar</h3>
+<p>In <strong>GabeCubeAura → Settings → Display Light → Display</strong>, set
+<strong>During Steam screensaver</strong> to <strong>Faceplate extension</strong>. The bar then extends
+the colours of the prepared Faceplate image and returns to your usual lighting
+when the screensaver ends.</p>
+<p>Under <strong>Faceplate image projection</strong>, choose <strong>Whole image</strong> for colours from
+the complete picture, or <strong>Bottom edge</strong> to continue its lower edge. The GIF
+above uses Whole image and the original colour saturation of 100%. Your global
+light-bar brightness still applies.</p>
+<h3 id="coordinate-the-tv-and-faceplate">Coordinate the TV and Faceplate</h3>
+<p>In <strong>Playback mode</strong>, choose one of two approaches:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Synchronised (experimental)</strong></td>
+<td>DAS coordinates the TV start with the prepared Faceplate collection. The displays use the same game order and time per game; TV shuffle is disabled for this mode.</td>
+</tr>
+<tr>
+<td><strong>Independent loop</strong></td>
+<td>The TV and Faceplate play independently. Set <strong>Faceplate JSAUX time per game</strong> for the matrix&#39;s own pace.</td>
+</tr>
+</tbody></table>
+<p>Synchronised preparation is the default for a new configuration. Coordination
+does not guarantee frame-accurate playback or an instantaneous USB transfer.
+If the Faceplate cannot be ready within the start window, TV playback continues.</p>
+<p>For a collection that cannot fit the synchronised preparation limits, DAS can
+automatically prepare compact batches for independent Faceplate playback.
+This keeps the selected games. It does not change your saved preference:
+another preparation can try synchronisation again if the collection fits.
+GCA handles the prepared batches during playback.</p>
+<p>If scene changes appear offset on the physical displays, open the Faceplate
+section&#39;s <strong>Details → Visual alignment</strong> controls. Compare the running
+screensaver, exit it, adjust <strong>TV timing correction</strong>, then save and restart
+the screensaver. Positive values delay the TV; negative values bring it
+forward. This is a visual adjustment, not a guarantee of measured alignment.</p>
+<h2 id="prepare-and-install-the-collection">Prepare and install the collection</h2>
+<ol>
+<li>Save your artwork and playback choices.</li>
+<li>In <strong>My collection</strong>, select <strong>Prepare and install</strong> for the first
+installation, or the collection update action afterwards.</li>
+<li>Confirm preparation and installation. DAS prepares the TV media and enabled
+Faceplate output, reuses unchanged ready files and installs the result.</li>
+<li>Review the completion state. If an artwork source cannot be read, DAS tries
+available alternatives. Still images are used only when you allow them or
+explicitly choose one. A failed replacement keeps the previous installed
+collection available.</li>
+</ol>
+<p>Opening a page, changing a crop or reordering games does not install those
+changes. Use the collection action when you are ready to apply them.</p>
+<h2 id="select-it-in-steam">Select it in Steam</h2>
+<p>After installation, choose:</p>
+<p><strong>Steam → Settings → Customization → Screensaver →
+decky-animated-screensaver</strong></p>
+<p>Set the inactivity delay in Steam&#39;s Power settings. DAS cannot confirm that
+you selected the screensaver in Steam, and a preview does not activate it.</p>
+<p>During the installed Steam screensaver, the player starts the prepared
+collection and requests its optional Faceplate output through GCA. When the
+screensaver ends, GCA returns to its current Home or in-game display. Its power,
+sleep and higher-priority display rules still apply.</p>
+<h2 id="if-the-faceplate-does-not-follow">If the Faceplate does not follow</h2>
+<p>Check the connection in GCA, then confirm that DAS&#39;s Faceplate output is
+enabled and included in the installed collection. Update the collection after
+changing artwork, framing, order or playback mode. A prepared preview is not
+the same as an installed collection or visible device playback.</p>
+<p>If DAS reports independent playback, check whether it prepared automatic
+batches for that collection. The television can continue normally even when
+the matrix is disconnected or unavailable. See
+<a href="https://alyenax.github.io/gabecubeaura-concept/guide/wiki/Troubleshooting.html">GCA troubleshooting</a> for device
+connection, power and display ownership.</p>
+<p>Created by <strong>Alyenax</strong>. You can
+<a href="https://ko-fi.com/alyenax">support development on Ko-fi</a>.
+Decky Animated Screensaver and GabeCubeAura are independent projects, not
+affiliated with, endorsed by or sponsored by Valve or JSAUX. Artwork and
+trademarks belong to their respective owners; see the
+<a href="media/CREDITS.html">demonstration credits</a>.</p>
+<footer>Animated Screensaver 1.0.0<br>By Alyenax · <a href="https://ko-fi.com/alyenax">Support on Ko-fi</a> · <a href="Privacy-and-Credits.html">Privacy and credits</a></footer></main></div><script>document.querySelectorAll('img').forEach(img=>{img.loading='lazy';if(!img.closest('a')){const a=document.createElement('a');a.className='gif-link';a.href=img.getAttribute('src');a.setAttribute('aria-label','Open image: '+img.alt);img.replaceWith(a);a.append(img);}});</script></body></html>

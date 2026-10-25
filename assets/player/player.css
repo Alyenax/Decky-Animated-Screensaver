@@ -1,0 +1,311 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  background: #05080d;
+  color: #f0f3f5;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#stage {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  cursor: none;
+}
+#stage {
+  position: relative;
+  background: #05080d;
+}
+.scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  isolation: isolate;
+  --caption-x: 5.6vw;
+  --caption-y: 7vh;
+  --cover-width: min(clamp(56px, 7.5vw, 144px), 20vh);
+  --cover-gap: clamp(12px, 2vw, 32px);
+  overflow: hidden;
+}
+.scene.visible {
+  opacity: 1;
+}
+.scene.instant {
+  transition: none;
+}
+.scene.matrix-wait * {
+  animation-play-state: paused !important;
+}
+.scene .ambience {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  filter: blur(46px) brightness(0.42) saturate(0.85);
+  z-index: -2;
+}
+.scene .shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(2, 5, 10, 0.9), transparent 45%, rgba(2, 5, 10, 0.08));
+  z-index: 1;
+  pointer-events: none;
+}
+.scene .artwork {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: var(--crop-x, 50%) var(--crop-y, 50%);
+}
+.scene.gentle .artwork {
+  animation: drift 30s ease-in-out infinite alternate;
+  transform-origin: var(--crop-x, 50%) var(--crop-y, 50%);
+}
+.scene.reduced .artwork {
+  animation: none;
+}
+.caption {
+  position: absolute;
+  left: var(--caption-x);
+  right: var(--caption-x);
+  bottom: var(--caption-y);
+  display: flex;
+  align-items: flex-end;
+  gap: var(--cover-gap);
+  z-index: 2;
+  text-shadow: 0 2px 22px #000;
+}
+.caption h1 {
+  font-size: clamp(24px, 4.1vw, 76px);
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: 0 0 0.34em;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.caption .credit {
+  font-size: clamp(9px, 1vw, 16px);
+  color: #bac5cf;
+  margin: 0;
+}
+#empty {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 24px;
+  background: radial-gradient(ellipse at 50% 45%, #10263b, #05080d 65%);
+}
+#empty[hidden] {
+  display: none;
+}
+#empty h1 {
+  font-size: clamp(22px, 3.2vw, 48px);
+  font-weight: 550;
+  letter-spacing: -0.035em;
+  margin: 18px 0 8px;
+}
+#empty p {
+  color: #8fa4b7;
+  font-size: clamp(12px, 1.3vw, 18px);
+  max-width: 36em;
+  line-height: 1.6;
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(0) scale(1);
+  }
+  to {
+    /* Pan consumes one third of the left margin created by the zoom.
+       It remains inside that margin even with an off-centre crop anchor. */
+    transform: translateX(calc(var(--crop-x, 50%) * 0.06)) scale(1.18);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    transition-duration: 0.01s;
+  }
+  .scene.static .artwork {
+    animation: none;
+  }
+}
+
+.scene.paused .artwork {
+  animation-play-state: paused;
+}
+.artwork[hidden] {
+  display: none;
+}
+
+.scene.paused {
+  transition: none;
+}
+
+.caption-copy {
+  min-width: 0;
+  max-width: 100%;
+}
+.caption-cover {
+  display: block;
+  width: var(--cover-width);
+  height: calc(var(--cover-width) * 1.5);
+  flex: 0 0 auto;
+  object-fit: contain;
+  object-position: bottom left;
+  filter: drop-shadow(0 4px 18px #0009);
+  z-index: 2;
+}
+.caption-cover[hidden],
+.cover-credit[hidden] {
+  display: none;
+}
+.scene > .caption-cover {
+  position: absolute;
+}
+.scene[data-cover-position='bottom-left'] > .caption-cover {
+  left: var(--caption-x);
+  bottom: var(--caption-y);
+}
+.scene[data-cover-position='bottom-left'].has-cover .caption {
+  padding-left: calc(var(--cover-width) + var(--cover-gap));
+}
+.scene[data-cover-position='bottom-right'] > .caption-cover {
+  right: var(--caption-x);
+  bottom: var(--caption-y);
+  object-position: bottom right;
+}
+.scene[data-cover-position='bottom-right'].has-cover .caption {
+  padding-right: calc(var(--cover-width) + var(--cover-gap));
+}
+.scene[data-cover-position='top-right'] > .caption-cover {
+  right: var(--caption-x);
+  top: var(--caption-y);
+  object-position: top right;
+}
+.scene[data-cover-position='top-left'] > .caption-cover {
+  left: var(--caption-x);
+  top: var(--caption-y);
+  object-position: top left;
+}
+.caption .cover-credit {
+  margin-top: 0.35em;
+}
+
+/* Only the image is cropped. Captions, cover margins and the ambient surround
+   keep their established screen positions. Each crop window has its true ratio. */
+.art-frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+.scene[data-framing='16:9'] .artwork,
+.scene[data-framing='16:10'] .artwork {
+  object-fit: cover;
+}
+
+/* Logos use the same safe margins as captions and covers. */
+.caption h1[hidden],
+.game-logo[hidden] {
+  display: none;
+}
+.game-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(36vw, 460px);
+  max-height: min(12vh, 150px);
+  object-fit: contain;
+  object-position: bottom left;
+  margin: 0 0 0.65em;
+  filter: drop-shadow(0 3px 10px #000a);
+  z-index: 3;
+}
+.scene > .game-logo {
+  position: absolute;
+  margin: 0;
+}
+.scene[data-logo-position='top-left'] > .game-logo {
+  left: var(--caption-x);
+  top: var(--caption-y);
+}
+.scene[data-logo-position='top-right'] > .game-logo {
+  right: var(--caption-x);
+  top: var(--caption-y);
+}
+.scene[data-logo-position='bottom-left'] > .game-logo {
+  left: var(--caption-x);
+  bottom: calc(var(--caption-y) + var(--caption-clearance, 0px));
+}
+.scene[data-logo-position='bottom-right'] > .game-logo {
+  right: var(--caption-x);
+  bottom: var(--caption-y);
+}
+.scene.has-logo[data-logo-position='bottom-right'] .caption {
+  padding-right: calc(36vw + var(--cover-gap));
+}
+.scene.branding-pair > .game-logo {
+  width: var(--pair-logo-width);
+  max-width: none;
+  left: auto;
+  right: auto;
+  top: auto;
+  bottom: auto;
+}
+.scene.branding-pair[data-cover-position$='left'] > .game-logo {
+  left: calc(var(--caption-x) + var(--cover-width) + var(--cover-gap));
+}
+.scene.branding-pair[data-cover-position$='right'] > .game-logo {
+  right: var(--caption-x);
+}
+.scene.branding-pair[data-cover-position$='right'] > .caption-cover {
+  right: calc(var(--caption-x) + var(--pair-logo-width) + var(--cover-gap));
+}
+.scene.branding-pair[data-cover-position^='top'] > .game-logo {
+  top: var(--caption-y);
+}
+.scene.branding-pair[data-cover-position^='bottom'] > .game-logo {
+  bottom: var(--caption-y);
+}
+.scene.branding-pair[data-cover-position='bottom-left'] .caption {
+  padding-left: calc(var(--pair-logo-width) + var(--cover-width) + 2 * var(--cover-gap));
+  padding-right: 0;
+}
+.scene.branding-pair[data-cover-position='bottom-right'] .caption {
+  padding-right: calc(var(--pair-logo-width) + var(--cover-width) + 2 * var(--cover-gap));
+  padding-left: 0;
+}
+.scene.branding-pair[data-cover-position^='top'] .caption {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.logo-credit[hidden] {
+  display: none;
+}
+.caption .logo-credit {
+  margin-top: 0.35em;
+}
+
+.caption .credit[hidden] {
+  display: none;
+}
+/* Coordinated exports include transitions inside fixed page slots. */
+#stage.coordinated .scene{transition-duration:400ms}
+#stage.coordinated.fade-black .scene{transition-duration:200ms}
+#stage.coordinated .matrix-placeholder .artwork{visibility:hidden}

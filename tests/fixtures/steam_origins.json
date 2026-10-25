@@ -1,0 +1,29 @@
+{
+  "accepted": [
+    "https://steamloopback.host",
+    "https://decky-animated-screensaver.steamloopback.host",
+    "https://client.steamloopback.host",
+    "https://uioverride-decky-animated-screensaver.steamscreensavers.host",
+    "https://decky-animated-screensaver.steamscreensavers.host"
+  ],
+  "rejected": [
+    "null",
+    "",
+    "https://steamscreensavers.host",
+    "https://steam-bouncinglogo.steamscreensavers.host",
+    "https://uioverride-other-plugin.steamscreensavers.host",
+    "http://uioverride-decky-animated-screensaver.steamscreensavers.host",
+    "https://uioverride-decky-animated-screensaver.steamscreensavers.host:444",
+    "https://uioverride-decky-animated-screensaver.steamscreensavers.host:443",
+    "https://uioverride-decky-animated-screensaver.steamscreensavers.host.evil.test",
+    "https://evil-uioverride-decky-animated-screensaver.steamscreensavers.host",
+    "https://user@uioverride-decky-animated-screensaver.steamscreensavers.host",
+    "https://uioverride-decky-animated-screensaver.steamscreensavers.host/",
+    "https://uioverride-decky-animated-screensaver.steamscreensavers.host?token=PRIVATE",
+    "https://steamloopback.host:443",
+    "https://steamloopback.host.evil.test",
+    "https://.steamloopback.host",
+    "https://evil.test",
+    "file:///index.html"
+  ]
+}

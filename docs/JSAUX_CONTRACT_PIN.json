@@ -1,0 +1,7 @@
+{
+  "protocol": "jsaux-broker",
+  "version": "1.0",
+  "contract_revision": 4,
+  "sha256": "480b8abaa9ee5669106f55fae46bb9acf0213abf4d28eb05568c499eccc4c11f",
+  "description": "Pinned shared compatibility contract for the optional GabeCubeAura integration."
+}

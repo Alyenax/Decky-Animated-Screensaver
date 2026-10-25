@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' app:; media-src 'self' app:; connect-src 'none'; font-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <title>Steam Animated Screensaver</title>
+    <link rel="stylesheet" href="player.css" />
+  </head>
+  <body>
+    <main id="stage" aria-label="Animated game artwork"></main>
+    <div id="empty" role="status" hidden>
+      <h1>No prepared animations.</h1>
+      <p>Prepare animations in Decky Animated Screensaver.</p>
+    </div>
+    <script src="diagnostic.js"></script>
+    <script src="diagnostic-config.js"></script>
+    <script src="catalog.js"></script>
+    <script src="player.js"></script>
+  </body>
+</html>

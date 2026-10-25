@@ -1,0 +1,17 @@
+**Decky Animated Screensaver**
+
+- [Wiki home](Home.md)
+- [README](README.md)
+- [Installation](Installation.md)
+- [Setup](Setup.md)
+- [Games and collection](Games-and-Collection.md)
+- [Artwork](Artwork.md)
+- [Preparation](Preparation.md)
+- [Preview and Steam](Preview-and-Steam.md)
+- [Playback](Playback.md)
+- [Optional Faceplate](GCA-Faceplate-Integration.md)
+- [Settings and backups](Settings-and-Backups.md)
+- [Troubleshooting](Troubleshooting.md)
+- [Privacy and credits](Privacy-and-Credits.md)
+- [GIF walkthroughs](Media.md)
+- [Changelog](CHANGELOG.md)

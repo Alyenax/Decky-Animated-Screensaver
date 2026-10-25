@@ -1,0 +1,58 @@
+{
+  "name": "decky-animated-screensaver",
+  "version": "1.0.0",
+  "description": "Animated game artwork screensavers for Steam Deck and Steam Machine, inside Decky",
+  "author": "Alyenax",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "test:studio-owner": "tsx --test scripts/test_studio_owner50.ts",
+    "test:continuity": "node --test scripts/test_continuity47.cjs",
+    "test:still-motion": "node --test scripts/test_gentle_motion56.cjs",
+    "test:exit-soak": "DAS_TEST_EXIT_SOAK=1 tsx --test scripts/test_jsaux_http_e2e.ts",
+    "test:game-sheet": "node --test scripts/test_game_sheet37.cjs",
+    "test:candidate-previews": "node --test scripts/test_candidate_previews.cjs",
+    "test:preview-source": "node --test scripts/test_preview_source.cjs",
+    "test:player-debug": "node --test scripts/test_player_debug.cjs",
+    "typecheck": "tsc --noEmit",
+    "build": "node scripts/build.mjs",
+    "test:backend": "PYTHONPYCACHEPREFIX=/private/tmp/das-pycache PYTHONPATH=py_modules python3 -m unittest discover -s tests/backend -v",
+    "test:frontend": "tsx --test tests/frontend/*.test.ts",
+    "test:jsaux-player": "node --test scripts/test_jsaux_player.cjs",
+    "test:jsaux-calendar": "node --test scripts/test_jsaux_calendar.cjs",
+    "test:jsaux-calibration": "node --test scripts/test_jsaux_calibration.cjs",
+    "test:jsaux-e2e": "tsx --test scripts/test_jsaux_e2e.ts",
+    "test:jsaux-http": "tsx --test scripts/test_jsaux_http_e2e.ts",
+    "test:quick-parity": "node scripts/test_quick_parity.mjs",
+    "test:collection-ui": "node scripts/test_collection_ui.mjs",
+    "test": "npm run test:frontend && npm run test:backend && npm run test:jsaux-player",
+    "package": "python3 scripts/package.py",
+    "test:steam-native-ui": "node scripts/test_steam_native_ui.mjs",
+    "test:steam-focus": "node scripts/test_steam_focus55.mjs --require-production-structure"
+  },
+  "devDependencies": {
+    "@decky/rollup": "^1.0.2",
+    "@decky/ui": "^4.12.1",
+    "@types/react": "19.1.1",
+    "@types/react-dom": "19.1.1",
+    "marked": "17.0.5",
+    "react": "19.3.0",
+    "rollup": "^4.53.3",
+    "tsx": "^4.20.5",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@decky/api": "^1.1.3",
+    "react-icons": "^5.3.0",
+    "tslib": "^2.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alyenax/Decky-Animated-Screensaver.git"
+  },
+  "homepage": "https://alyenax.github.io/Decky-Animated-Screensaver/",
+  "bugs": {
+    "url": "https://github.com/Alyenax/Decky-Animated-Screensaver/issues"
+  }
+}

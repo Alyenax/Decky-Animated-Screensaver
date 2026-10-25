@@ -1,0 +1,204 @@
+{
+  "status": "public",
+  "version": "1.0.0",
+  "media": [
+    {
+      "name": "das-tv.gif",
+      "bytes": 1950595,
+      "sha256": "d0c6d5c1d17f486be3c4c0bd0863296c57ed12e4117c9092829985967949a9e0",
+      "duration_ms": 13200,
+      "size": [
+        800,
+        498
+      ],
+      "source": "actual DAS player in local Chromium",
+      "credits": [
+        {
+          "game": "ELDEN RING",
+          "role": "media",
+          "author": "TUFKAC",
+          "url": "https://cdn2.steamgriddb.com/hero/2c9f13441c3f36d9422d5de661e57742.webp",
+          "sha256": "9f51bf656a9284bc47fcbf6801193e625d8853cdb4b8e40bb6047180607d0ac7"
+        },
+        {
+          "game": "ELDEN RING",
+          "role": "cover",
+          "author": "Morente",
+          "url": "https://cdn2.steamgriddb.com/grid/557fa68027943a8b0d3b66c4e72ff23b.png",
+          "sha256": "5aef17866b2d648fe17302c85b9cc978b06c1d873236350467e4f159bd682d7c"
+        },
+        {
+          "game": "ELDEN RING",
+          "role": "logo",
+          "author": "Official Steam library artwork",
+          "url": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/logo.png",
+          "sha256": "5a289d0179106e0887be0b11f8c08cf8c706aef506b67dec2ee1db9ec439a340"
+        },
+        {
+          "game": "Cyberpunk 2077",
+          "role": "media",
+          "author": "fewwan",
+          "url": "https://cdn2.steamgriddb.com/hero/a834433907aae376f0fdc19875b6678e.webp",
+          "sha256": "31dcf83b91673762ef10cdbf5a2c83699d17368a50cbbe5603c7ba81e231916a"
+        },
+        {
+          "game": "Cyberpunk 2077",
+          "role": "cover",
+          "author": "jho",
+          "url": "https://cdn2.steamgriddb.com/grid/81c4ff81e06c236f16a408089a8cd2ac.png",
+          "sha256": "657497735d903261db8e16d0d37d233c7692e0318770d88ddaf47facea52f2bf"
+        },
+        {
+          "game": "Cyberpunk 2077",
+          "role": "logo",
+          "author": "Official Steam library artwork",
+          "url": "https://cdn.akamai.steamstatic.com/steam/apps/1091500/logo.png",
+          "sha256": "4e37537b920d1d777b4182aa1814f729f170e04de49e4d62652046a34b4dce98"
+        }
+      ],
+      "hardware_tested": false
+    },
+    {
+      "name": "das-preparation.gif",
+      "bytes": 152191,
+      "sha256": "7de4da92dc39990971efa8f75f81776be55ebcaae8981012cdcc339da94d43e9",
+      "duration_ms": 12300,
+      "size": [
+        960,
+        660
+      ],
+      "source": "production React components, local Decky adapters and simulated RPC",
+      "hardware_tested": false
+    },
+    {
+      "name": "das-artwork.gif",
+      "bytes": 165684,
+      "sha256": "734b760f67bfd6daac2c03c930b8651ab7be9348990939cfb126d8287cefd334",
+      "duration_ms": 8800,
+      "size": [
+        960,
+        660
+      ],
+      "source": "production React components, local Decky adapters and simulated RPC",
+      "hardware_tested": false
+    },
+    {
+      "name": "das-reorder.gif",
+      "bytes": 81034,
+      "sha256": "144f1dcd3008ca2fa5cee1b4b81286c907749efa13f9daa84a781e50ca485567",
+      "duration_ms": 10100,
+      "size": [
+        960,
+        660
+      ],
+      "source": "production React components, local Decky adapters and simulated RPC",
+      "hardware_tested": false
+    },
+    {
+      "name": "das-tv-faceplate.gif",
+      "bytes": 3219244,
+      "sha256": "7253ac9ccee3d1cf4b8935f34133fce2e7a4fb9849b076396edcf72b70783925",
+      "source": "DAS player with illustrated Faceplate and light bar",
+      "hardware_tested": false
+    }
+  ],
+  "interface_thumbnails": [
+    {
+      "appid": 105600,
+      "sha256": "866a45d030cf6af1fe06fd311a57cb472cb12411b2cdfe78391fd8b8ce4ab4bd",
+      "name": "Terraria",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1769844435",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 1086940,
+      "sha256": "70f099749ece31e4ff2d017cbfafc47fd8cbe52e23eb26daec8dde4549576ccb",
+      "name": "Baldur's Gate 3",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg?t=1777363040",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 1091500,
+      "sha256": "b93e64874b844e41a3269e9be00c9fad8037e8a79d00535a8344542bd02c81e6",
+      "name": "Cyberpunk 2077",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/e9047d8ec47ae3d94bb8b464fb0fc9e9972b4ac7/header.jpg?t=1784714077",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 1145360,
+      "sha256": "5014ec1d84ae967cf4226826824628d44963655fa8ac5f6575ca53a759b5cb3f",
+      "name": "Hades",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg?t=1758127023",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 1245620,
+      "sha256": "d46402528e357350bdb31a00be57a7896238515e6dc8afc0669aa54573307c02",
+      "name": "ELDEN RING",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg?t=1790290043",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 2379780,
+      "sha256": "42103ce1a28589de7167b5e010028c17bf53b60b393b19d70bc9da5ed10a7d3b",
+      "name": "Balatro",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/7a85430784e4d613cdb0547414d8cf16ffa45747/header.jpg?t=1790693638",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 367520,
+      "sha256": "8886d642286de5411b216173b078d9d95f97cb5343e8d8042970ca4ba40d5d7d",
+      "name": "Hollow Knight",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1776125684",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 413150,
+      "sha256": "6f173dfb051a350dffdc1668b466b30b884ee2d080725c995fdbc89bcfd4565b",
+      "name": "Stardew Valley",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg?t=1786554168",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 548430,
+      "sha256": "9827c5c71bb8413d8f816fc0409c233d74309616fbae179116f801ec622b0376",
+      "name": "Deep Rock Galactic",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/548430/37b58a6c4816ee60b0ca97cb6724d6e904c58c41/header.jpg?t=1791554128",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 588650,
+      "sha256": "6a6f141f761ad88c31691c1ab5134fd9d69c5bb41fe4a6e6e90b2913bd1b4e02",
+      "name": "Dead Cells",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/588650/header.jpg?t=1779086887",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 620,
+      "sha256": "f8d3e67e30a6b1b96be98bc52d5759a1e027ea41bd62f5ba6c4008ff780de58f",
+      "name": "Portal 2",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620/faffc0f560786e2f05104a8d2fac837c6969bf13/header.jpg?t=1790187113",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    },
+    {
+      "appid": 881100,
+      "sha256": "5bcd0b22114acfe7d4bf39eeeee3c2ce64088fc7bad85985d5a6da84dff58863",
+      "name": "Noita",
+      "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/881100/header.jpg?t=1675987871",
+      "credit": "Official Steam store header artwork; rights belong to the game rights holders.",
+      "provenance": "Recorded original source and exact SHA256 matched"
+    }
+  ],
+  "project": "Decky Animated Screensaver"
+}

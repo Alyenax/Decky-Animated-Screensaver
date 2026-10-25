@@ -1,0 +1,32 @@
+name: Validate Animated Screensaver
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: |
+          python3 -m pip install pillow
+          sudo install -d -m 1777 /private/tmp
+      - run: pnpm run typecheck
+      - run: pnpm run test:frontend
+      - run: pnpm run test:backend
+      - run: pnpm run test:jsaux-player
+      - run: pnpm run test:player-debug
+      - run: pnpm run build
+      - run: pnpm run package
+      - run: cd out && sha256sum -c SHA256SUMS
