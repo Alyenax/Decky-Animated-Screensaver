@@ -1,4 +1,4 @@
-# Animated Screensaver
+# Decky Animated Screensaver
 
 This project is derived from [Steam Animated Screensaver](https://github.com/Alyenax/Steam-Animated-Screensaver).
 
