@@ -1,5 +1,7 @@
 # Decky Animated Screensaver
 
+This project is derived from [Steam Animated Screensaver](https://github.com/Alyenax/Steam-Animated-Screensaver).
+
 Prepare a collection of game artwork and use it as Steam’s screensaver on Steam Deck or Steam Machine. Browse SteamGridDB, choose animated or still backgrounds, covers and logos, then prepare and install your collection from Decky.
 
 **Developed by Alyenax · [Support my work on Ko-fi](https://ko-fi.com/alyenax)**

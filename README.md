@@ -1,5 +1,7 @@
 # Animated Screensaver
 
+This project is derived from [Steam Animated Screensaver](https://github.com/Alyenax/Steam-Animated-Screensaver).
+
 Prepare animated game artwork for Steam Deck and Steam Machine in Decky. Choose
 SteamGridDB artwork, build a collection, and install it as a Steam screensaver.
 TV playback works independently. The optional JSAUX Faceplate integration uses a
