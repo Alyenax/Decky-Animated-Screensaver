@@ -7,7 +7,12 @@ SteamGridDB artwork, build a collection, and install it as a Steam screensaver.
 TV playback works independently. The optional JSAUX Faceplate integration uses a
 compatible GabeCubeAura installation to control the hardware.
 
-**Created and maintained by Alyenax.** [Support development on Ko-fi](https://ko-fi.com/alyenax).
+Created and maintained by **Alyenax**.
+
+If Animated Screensaver makes your Steam Deck or Steam Machine a little better,
+you can support its development on Ko-fi. Thank you! ❤️
+
+[![Support Animated Screensaver on Ko-fi](docs/media/public/support-kofi.svg)](https://ko-fi.com/alyenax)
 
 [Download 1.0.0](https://github.com/Alyenax/Decky-Animated-Screensaver/releases/tag/v1.0.0) ·
 [User guide](docs/wiki/Home.md) · [Changelog](CHANGELOG.md)
