@@ -9,10 +9,10 @@ compatible GabeCubeAura installation to control the hardware.
 
 Created and maintained by **Alyenax**.
 
-If Animated Screensaver makes your Steam Deck or Steam Machine a little better,
+If Decky Animated Screensaver makes your Steam Deck or Steam Machine a little better,
 you can support its development on Ko-fi. Thank you! ❤️
 
-[![Support Animated Screensaver on Ko-fi](docs/media/public/support-kofi.svg)](https://ko-fi.com/alyenax)
+[![Support Decky Animated Screensaver on Ko-fi](docs/media/public/support-kofi.svg)](https://ko-fi.com/alyenax)
 
 [Download 1.0.0](https://github.com/Alyenax/Decky-Animated-Screensaver/releases/tag/v1.0.0) ·
 [User guide](docs/wiki/Home.md) · [Changelog](CHANGELOG.md)
@@ -39,7 +39,7 @@ See [Installation](docs/wiki/Installation.md) for the complete setup.
 
 ## Setup and use
 
-Open Animated Screensaver in Decky, configure your SteamGridDB key, and install
+Open Decky Animated Screensaver in Decky, configure your SteamGridDB key, and install
 the media tools if needed. Add games, choose artwork and update your collection.
 Video tools identifies the downloaded FFmpeg/ffprobe Linux x86_64 distribution
 and shared libraries (about 64 MB), its BtbN/FFmpeg-Builds source, and the exact
