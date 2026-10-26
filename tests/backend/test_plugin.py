@@ -49,6 +49,36 @@ class PluginTests(unittest.IsolatedAsyncioTestCase):
 
     async def call(self,action,**payload):return await self.plugin.studio(action,payload)
 
+    async def test_steam_deck_cold_start_rpc_before_backend_discovery_finishes(self):
+        """Decky can invoke RPC during _main's first await, without GCA installed."""
+        from das.jsaux.protocol import BrokerError
+        plugin=self.plugin.__class__()
+        reached=asyncio.Event();resume=asyncio.Event();original_to_thread=asyncio.to_thread
+        async def delayed_to_thread(function,*args,**kwargs):
+            if (getattr(function,'__self__',None) is getattr(plugin,'installer',None)
+                    and getattr(function,'__name__',None)=='status' and args==(True,)):
+                reached.set()
+                await resume.wait()
+            return await original_to_thread(function,*args,**kwargs)
+        try:
+            with patch('asyncio.to_thread',new=delayed_to_thread):
+                starting=asyncio.create_task(plugin._main())
+                try:
+                    await asyncio.wait_for(reached.wait(),3)
+                    with patch.object(plugin.jsaux.broker,'discover',side_effect=BrokerError('BROKER_UNAVAILABLE')):
+                        state=await asyncio.wait_for(plugin.studio('state'),3)
+                        self.assertEqual(state['version'],'1.0.0')
+                        self.assertIn('updates',state)
+                        updates=await asyncio.wait_for(plugin.studio('update_status'),3)
+                        self.assertIn('channel',updates)
+                        refreshed=await asyncio.wait_for(plugin.studio('jsaux_refresh'),3)
+                        self.assertFalse(refreshed['jsaux']['detected'])
+                finally:
+                    resume.set()
+                    await asyncio.wait_for(starting,5)
+        finally:
+            await plugin._unload()
+
     async def test_terminal_display_evidence_does_not_permanently_block_updater(self):
         self.plugin.jsaux.session={'terminal':True};self.plugin.jsaux.phase='idle'
         self.assertFalse(self.plugin.updater.blocked())
