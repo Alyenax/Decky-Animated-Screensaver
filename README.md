@@ -18,11 +18,6 @@ you can support its development on Ko-fi. Thank you! ❤️
 [Download 1.0.1](https://github.com/Alyenax/Decky-Animated-Screensaver/releases/tag/v1.0.1) ·
 [User guide](docs/wiki/Home.md) · [Changelog](CHANGELOG.md)
 
-Version **1.0.1** fixes a startup race that could display **Python Exception**,
-clears recovered interface errors, and improves messages for incomplete setup.
-It also handles screen-only installation after a previously configured Faceplate
-is removed. See the [1.0.1 release notes](docs/RELEASE_NOTES_1.0.1.md).
-
 ![Animated game artwork in the DAS player](docs/wiki/media/das-tv.gif)
 
 Artwork credits: [TUFKAC, fewwan, Morente, jho and official Steam artwork](docs/wiki/media/CREDITS.md).
