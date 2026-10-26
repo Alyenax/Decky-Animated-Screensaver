@@ -10,26 +10,28 @@ export function useStudio(client:StudioClient,discoverOnOpen=true,visible=true){
   const [state,setState]=useState<StudioState|null>(null),[error,setError]=useState(''),[saving,setSaving]=useState(false);
   const [failure,setFailure]=useState<Failure|null>(null);
   const alive=useRef(true),locked=useRef(false),sequence=useRef(0),discoveryAt=useRef(0);
+  const failureSource=useRef<'refresh'|'action'|null>(null);
   const refresh=useCallback(async(discover=false)=>{
     const id=++sequence.current;if(discover)discoveryAt.current=Date.now();
-    try{const value=await client(discover?'jsaux_refresh':'state');if(alive.current && id===sequence.current){setState(value);if(value.updates)publishUpdate(value.updates);}}
-    catch(e){if(alive.current){setError(errorText(String(e)));setFailure({code:safeErrorCode(e),action:'state'});}}
+    try{const value=await client(discover?'jsaux_refresh':'state');if(alive.current && id===sequence.current){setState(value);if(value.updates)publishUpdate(value.updates);
+      if(failureSource.current==='refresh'){failureSource.current=null;setError('');setFailure(null);}}}
+    catch(e){if(alive.current && id===sequence.current && failureSource.current!=='action'){failureSource.current='refresh';setError(errorText(String(e)));setFailure({code:safeErrorCode(e),action:'state'});}}
   },[client]);
   useEffect(()=>{alive.current=true;if(visible)void refresh(discoverOnOpen);return()=>{alive.current=false;sequence.current++;};},[refresh,discoverOnOpen,visible]);
   const run=useCallback(async<T=StudioState,>(name:string,payload:Record<string,unknown>={}):Promise<T|undefined>=>{
     if(['pause','cancel','resume'].includes(name)){
       const id=++sequence.current;
       try{const result=await client<T>(name,payload);if(alive.current&&id===sequence.current)setState(result as unknown as StudioState);return result;}
-      catch(e){if(alive.current){setError(errorText(String(e)));setFailure({code:safeErrorCode(e),action:name});}return undefined;}
+      catch(e){if(alive.current){failureSource.current='action';setError(errorText(String(e)));setFailure({code:safeErrorCode(e),action:name});}return undefined;}
     }
     if(locked.current)return;
-    locked.current=true;sequence.current++;setSaving(true);setError('');setFailure(null);
+    locked.current=true;sequence.current++;setSaving(true);failureSource.current=null;setError('');setFailure(null);
     const ticket=sequence.current;
     try{const result=await client<T>(name,payload);if(!alive.current || ticket!==sequence.current)return undefined;if(alive.current){
       if(result && typeof result==='object' && 'job' in result){setState(result as unknown as StudioState);const update=(result as unknown as StudioState).updates;if(update)publishUpdate(update);}
       else if(!['preview','preview_installed','close_preview','diagnostic','library','candidates','search'].includes(name))await refresh();
     }return result;}
-    catch(e){if(alive.current){setError(errorText(String(e)));setFailure({code:safeErrorCode(e),action:name,
+    catch(e){if(alive.current){failureSource.current='action';setError(errorText(String(e)));setFailure({code:safeErrorCode(e),action:name,
       appid:typeof payload.appid==='number'&&Number.isSafeInteger(payload.appid)?payload.appid:undefined,
       role:typeof payload.role==='string'?payload.role:undefined});}return undefined;}
     finally{locked.current=false;if(alive.current)setSaving(false);}
@@ -43,7 +45,7 @@ export function useStudio(client:StudioClient,discoverOnOpen=true,visible=true){
     timer=setTimeout(()=>void tick(),polling?1200:5000);
     return()=>{stop=true;clearTimeout(timer);};
   },[polling,refresh,visible]);
-  return {state,error,failure,saving,run,refresh,clearError:()=>{setError('');setFailure(null);}};
+  return {state,error,failure,saving,run,refresh,clearError:()=>{failureSource.current=null;setError('');setFailure(null);}};
 }
 export function Player({preview,client,onClose,compact=false}:{preview:StudioPreview;client:StudioClient;onClose:()=>void;compact?:boolean}){
   const frame=useRef<HTMLIFrameElement>(null);

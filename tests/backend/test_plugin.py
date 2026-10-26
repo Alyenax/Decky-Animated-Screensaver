@@ -16,6 +16,8 @@ from das.library import _steam_home,installed_games
 from das.core.catalog import file_sha256,ScreensaverError
 from das.studio.storage import validate
 from das.studio.installer import MARKER
+# Keep this class loaded before asyncSetUp temporarily patches sys.modules.
+from das.jsaux.protocol import BrokerError
 
 ROOT=Path(__file__).resolve().parents[2]
 GIF=base64.b64decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')
@@ -51,7 +53,6 @@ class PluginTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_steam_deck_cold_start_rpc_before_backend_discovery_finishes(self):
         """Decky can invoke RPC during _main's first await, without GCA installed."""
-        from das.jsaux.protocol import BrokerError
         plugin=self.plugin.__class__()
         reached=asyncio.Event();resume=asyncio.Event();original_to_thread=asyncio.to_thread
         async def delayed_to_thread(function,*args,**kwargs):
@@ -73,6 +74,8 @@ class PluginTests(unittest.IsolatedAsyncioTestCase):
                         self.assertIn('channel',updates)
                         refreshed=await asyncio.wait_for(plugin.studio('jsaux_refresh'),3)
                         self.assertFalse(refreshed['jsaux']['detected'])
+                        recovered=await asyncio.wait_for(plugin.studio('jsaux_recover'),3)
+                        self.assertFalse(recovered['jsaux']['detected'])
                 finally:
                     resume.set()
                     await asyncio.wait_for(starting,5)

@@ -30,6 +30,15 @@ VERSION='1.0.0'
 
 class Plugin:
     async def _main(self):
+        self._startup_error=''
+        try:await self._initialize()
+        except Exception as error:
+            # Keep Decky's traceback while giving an already connected frontend
+            # an actionable state instead of an endless "starting" message.
+            self._startup_error='backend_storage' if isinstance(error,OSError) else 'backend_start_failed'
+            raise
+
+    async def _initialize(self):
         self._lock=threading.RLock();self._closed=False;self._running={};self._events=[];self._generation=None
         self.root=Path(decky.DECKY_PLUGIN_SETTINGS_DIR)/'library'
         recover_settings(self.root)
@@ -126,7 +135,12 @@ class Plugin:
         return state
 
     async def studio(self,action:str,payload:dict=None):
-        if not hasattr(self,'service') or self._closed:raise ValueError('Screensaver is starting or stopping. Try again.')
+        # Decky may admit an RPC before _main runs or after a synchronous
+        # initialization failure. Never expose a partially constructed service.
+        startup_error=getattr(self,'_startup_error','')
+        if startup_error or not hasattr(self,'updater') or self._closed:
+            return dict(schema='das-action-error-v1',ok=False,
+                error='backend_stopping' if getattr(self,'_closed',False) else startup_error or 'backend_starting')
         payload={} if payload is None else payload
         if not isinstance(action,str) or not isinstance(payload,dict) or len(json.dumps(payload))>8192:raise ValueError('Invalid request')
         if action=='jsaux_player':return await asyncio.to_thread(self.jsaux.player,payload)

@@ -14,6 +14,10 @@ export const stepText=(kind:string)=>({
   current:tr('Installed and up to date','Installé et à jour'),conflict:tr('Installation conflict · files preserved','Conflit d’installation · fichiers conservés')
 } as Record<string,string>)[kind] || kind;
 const errors:Record<string,[string,string]>={
+  backend_starting:['Screensaver is starting. Please wait.','L’écran de veille démarre. Patientez un instant.'],
+  backend_stopping:['Screensaver is stopping. Reopen the plugin after restart.','L’écran de veille s’arrête. Rouvrez le plugin après son redémarrage.'],
+  backend_storage:['Screensaver could not access its settings. Check free space and permissions, then reload the plugin.','L’écran de veille ne peut pas accéder à ses réglages. Vérifiez l’espace libre et les permissions, puis rechargez le plugin.'],
+  backend_start_failed:['Screensaver could not start. Check the Decky log, then reload the plugin.','L’écran de veille n’a pas pu démarrer. Consultez le journal Decky, puis rechargez le plugin.'],
   steam_tls_unavailable:['Steam connection could not be verified. Check the SteamOS date and updates.','Connexion Steam non vérifiée. Vérifiez la date et les mises à jour SteamOS.'],
   steam_timeout:['Steam took too long to respond. Retry. Your collection is unchanged.','Steam met trop de temps à répondre. Réessayez. Votre collection est conservée.'],
   steam_network_unavailable:['Steam could not be reached. Check the connection, then retry.','Steam est inaccessible. Vérifiez la connexion, puis réessayez.'],
