@@ -4,8 +4,9 @@ This project is derived from [Steam Animated Screensaver](https://github.com/Aly
 
 Prepare animated game artwork for Steam Deck and Steam Machine in Decky. Choose
 SteamGridDB artwork, build a collection, and install it as a Steam screensaver.
-TV playback works independently. The optional JSAUX Faceplate integration uses a
-compatible GabeCubeAura installation to control the hardware.
+Playback on the Steam Deck LCD/OLED display or a TV does not require GabeCubeAura
+or a JSAUX Faceplate. The optional Faceplate integration uses a compatible
+GabeCubeAura installation to control the hardware.
 
 Created and maintained by **Alyenax**.
 
@@ -16,6 +17,11 @@ you can support its development on Ko-fi. Thank you! ❤️
 
 [Download 1.0.1](https://github.com/Alyenax/Decky-Animated-Screensaver/releases/tag/v1.0.1) ·
 [User guide](docs/wiki/Home.md) · [Changelog](CHANGELOG.md)
+
+Version **1.0.1** fixes a startup race that could display **Python Exception**,
+clears recovered interface errors, and improves messages for incomplete setup.
+It also handles screen-only installation after a previously configured Faceplate
+is removed. See the [1.0.1 release notes](docs/RELEASE_NOTES_1.0.1.md).
 
 ![Animated game artwork in the DAS player](docs/wiki/media/das-tv.gif)
 
@@ -32,15 +38,16 @@ Artwork credits: [TUFKAC, fewwan, Morente, jho and official Steam artwork](docs/
 
 ## Install
 
-Download `Decky-Animated-Screensaver-v1.0.1.zip` from the release page. In Decky
+Download [Decky-Animated-Screensaver-v1.0.1.zip](https://github.com/Alyenax/Decky-Animated-Screensaver/releases/download/v1.0.1/Decky-Animated-Screensaver-v1.0.1.zip). In Decky
 Loader, enable Developer mode if needed, then use **Developer → Install plugin
-from ZIP** and select the archive. Open **Animated Screensaver** in Decky.
+from ZIP** and select the archive without unpacking it. Open **Animated Screensaver** in Decky.
 See [Installation](docs/wiki/Installation.md) for the complete setup.
 
 ## Setup and use
 
-Open Decky Animated Screensaver in Decky, configure your SteamGridDB key, and install
-the media tools if needed. Add games, choose artwork and update your collection.
+Before searching for artwork, configure your SteamGridDB key in **Settings → Setup**.
+Install the video tools there if needed before preparing new media. Then add games,
+choose artwork and update your collection. Already prepared media can be reused offline.
 Video tools identifies the downloaded FFmpeg/ffprobe Linux x86_64 distribution
 and shared libraries (about 64 MB), its BtbN/FFmpeg-Builds source, and the exact
 installation folder reported by Decky (`cinema-tools-v1` in this plugin's
