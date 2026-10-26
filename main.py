@@ -26,7 +26,7 @@ from das.studio.migration import start as import_gca_studio
 from das.studio.workspace import CollectionWorkspace
 from das.studio.discovery import Discovery,thumbnail,image_diagnostic
 
-VERSION='1.0.0'
+VERSION='1.0.1'
 
 def setup_failure(code):
     return code in {'key_missing','ffmpeg_missing','ffprobe_missing','tools_missing',

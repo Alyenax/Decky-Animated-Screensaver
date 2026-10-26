@@ -11,7 +11,7 @@ you can support its development on Ko-fi. Thank you! ❤️
 
 [![Support Animated Screensaver on Ko-fi](../media/public/support-kofi.svg)](https://ko-fi.com/alyenax)
 
-> Animated Screensaver 1.0.0 by Alyenax. GPL-3.0-only.
+> Animated Screensaver 1.0.1 by Alyenax. GPL-3.0-only.
 
 ![Animated game artwork in the DAS player](media/das-tv.gif)
 

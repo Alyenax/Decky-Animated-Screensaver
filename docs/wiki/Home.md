@@ -1,6 +1,6 @@
 # Decky Animated Screensaver wiki
 
-> User guide for Animated Screensaver 1.0.0.
+> User guide for Animated Screensaver 1.0.1.
 
 Decky Animated Screensaver (DAS) prepares game artwork for Steam’s screensaver. Choose games and images, preview the result, then prepare and install the collection. TV and Steam Deck playback work without GabeCubeAura. Faceplate output is an optional integration.
 

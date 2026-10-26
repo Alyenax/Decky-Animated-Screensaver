@@ -1,6 +1,17 @@
-# Decky Animated Screensaver changelog
+# Animated Screensaver changelog
 
 > Public release history.
+
+## 1.0.1 - 2026-10-26
+
+### Fixes
+
+- Fix a startup race that could show a Python exception when opening the plugin immediately after installation or reload.
+- Clear temporary interface errors after a successful refresh and ignore outdated error responses.
+- Show clear setup messages for missing, invalid or rejected SteamGridDB keys and unavailable video tools. Keep the previous saved key when new input is invalid.
+- Detect a missing ffprobe before starting decoder work.
+- Keep screen-only installation independent of GCA and the JSAUX Faceplate, including after removing a previously configured device. Preserve saved preferences and prepared Faceplate files.
+- Preserve offline installation of already prepared collections without requiring a SteamGridDB key or video tools.
 
 ## 1.0.0 - 2026-10-25
 

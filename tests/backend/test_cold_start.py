@@ -55,7 +55,7 @@ class ColdStartTests(unittest.IsolatedAsyncioTestCase):
                     reply=await asyncio.wait_for(self.plugin.studio(action),3)
                     if action=='update_status':self.assertIn('channel',reply)
                     else:
-                        self.assertEqual(reply['version'],'1.0.0');self.assertIn('updates',reply)
+                        self.assertEqual(reply['version'],json.loads((ROOT/'package.json').read_text())['version']);self.assertIn('updates',reply)
                         self.assertFalse(reply['jsaux']['detected'])
         finally:
             resume.set();await asyncio.wait_for(task,5)

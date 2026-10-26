@@ -68,7 +68,7 @@ class PluginTests(unittest.IsolatedAsyncioTestCase):
                     await asyncio.wait_for(reached.wait(),3)
                     with patch.object(plugin.jsaux.broker,'discover',side_effect=BrokerError('BROKER_UNAVAILABLE')):
                         state=await asyncio.wait_for(plugin.studio('state'),3)
-                        self.assertEqual(state['version'],'1.0.0')
+                        self.assertEqual(state['version'],json.loads((ROOT/'package.json').read_text())['version'])
                         self.assertIn('updates',state)
                         updates=await asyncio.wait_for(plugin.studio('update_status'),3)
                         self.assertIn('channel',updates)
