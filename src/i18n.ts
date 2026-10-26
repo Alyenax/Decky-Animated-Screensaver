@@ -65,6 +65,8 @@ const errors:Record<string,[string,string]>={
   JSAUX_RELAY_UNAVAILABLE:['Steam player connection unavailable. Update the collection.','Liaison avec le lecteur Steam indisponible. Mettez à jour la collection.'],
   JSAUX_SYNC_WINDOW:['This collection will use lots with independent playback.','Cette collection utilisera des lots en lecture indépendante.'],
   key_missing:['Add your SteamGridDB key.','Ajoutez votre clé SteamGridDB.'],steamgriddb_unauthorized:['SteamGridDB rejected this key.','SteamGridDB a refusé cette clé.'],
+  steamgriddb_invalid_key:['Enter a valid SteamGridDB API key. The previous key is kept.','Saisissez une clé API SteamGridDB valide. La clé précédente est conservée.'],
+  python_missing:['System Python is unavailable. Check the Decky log before retrying.','Le Python système est indisponible. Consultez le journal Decky avant de réessayer.'],
   steamgriddb_rate_limited:['SteamGridDB is busy. Retry later.','SteamGridDB est occupé. Réessayez plus tard.'],
   ffmpeg_missing:['Install or repair the video tools.','Installez ou réparez les outils vidéo.'],ffprobe_missing:['Install the video inspection tools.','Installez les outils d’inspection vidéo.'],
   probe_failed:['Video tools could not start. Check Settings → Setup.','Les outils vidéo ne démarrent pas. Vérifiez Réglages → Configuration.'],

@@ -28,6 +28,10 @@ from das.studio.discovery import Discovery,thumbnail,image_diagnostic
 
 VERSION='1.0.0'
 
+def setup_failure(code):
+    return code in {'key_missing','ffmpeg_missing','ffprobe_missing','tools_missing',
+                    'decoder_missing','probe_failed','python_missing'} or code.startswith('steamgriddb_')
+
 class Plugin:
     async def _main(self):
         self._startup_error=''
@@ -143,8 +147,15 @@ class Plugin:
                 error='backend_stopping' if getattr(self,'_closed',False) else startup_error or 'backend_starting')
         payload={} if payload is None else payload
         if not isinstance(action,str) or not isinstance(payload,dict) or len(json.dumps(payload))>8192:raise ValueError('Invalid request')
-        if action=='jsaux_player':return await asyncio.to_thread(self.jsaux.player,payload)
-        return await asyncio.to_thread(self._apply,action,payload)
+        try:
+            if action=='jsaux_player':return await asyncio.to_thread(self.jsaux.player,payload)
+            return await asyncio.to_thread(self._apply,action,payload)
+        except ScreensaverError as error:
+            if not setup_failure(error.code):raise
+            # Expected prerequisites must survive Decky's opaque exception
+            # transport, including controls handled outside _apply's lock.
+            self._event('request_error',code=error.code)
+            return dict(schema='das-action-error-v1',ok=False,error=error.code)
 
     def _apply(self,action,payload):
         if action=='close_preview':
@@ -349,7 +360,9 @@ class Plugin:
                     return result
                 elif action=='save_key':
                     if service._busy():raise ValueError('Pause preparation before changing the key')
-                    self.provider.save(payload.get('key'));service.refresh_key_state()
+                    try:self.provider.save(payload.get('key'))
+                    except (ValueError,TypeError):raise ScreensaverError('Invalid SteamGridDB key','steamgriddb_invalid_key') from None
+                    service.refresh_key_state()
                 elif action=='validate_key':service.validate_key()
                 elif action=='search':return service.search(payload.get('query',''))
                 elif action=='add':service.add(payload.get('id'))
@@ -422,6 +435,7 @@ class Plugin:
                 else:raise ValueError('Unknown action')
                 return self._status()
             except (ScreensaverError,BrokerError,UpdateError) as error:
+                if isinstance(error,ScreensaverError) and setup_failure(error.code):raise
                 self._event('request_error',code=error.code)
                 # Decky replaces Python exception messages with a generic
                 # "Unexpected error". Carry this expected admission refusal

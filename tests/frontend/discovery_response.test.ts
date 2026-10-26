@@ -31,6 +31,22 @@ test('Successful pages, candidate arrays and unrelated RPC replies are unchanged
  const value={schema:'das-discovery-error-v1',ok:false,error:'example'};
  assert.equal(discoveryResponse('state',value),value);
 });
+test('Expected setup refusals remain translated and point to setup, without GCA advice',()=>{
+ for(const lang of ['fr','en']){
+  setLanguage(lang);
+  for(const action of ['validate_key','save_key','search','add','candidates','prepare','resume']){
+   for(const code of ['key_missing','steamgriddb_invalid_key','steamgriddb_unauthorized','ffmpeg_missing','ffprobe_missing']){
+    let failure:unknown;
+    try{discoveryResponse(action,JSON.parse(JSON.stringify({schema:'das-action-error-v1',ok:false,error:code})));}catch(error){failure=error;}
+    assert(failure instanceof Error);assert.equal(failure.message,code);
+    const help=recoveryHelp(code);assert.equal(help.action,code.startsWith('ff')?'tools':'settings');
+    assert(!/GabeCubeAura|JSAUX|Python Exception/.test(errorText(String(failure))+help.body));
+    assert(!errorText(String(failure)).includes(code));
+   }
+  }
+ }
+ setLanguage('en');
+});
 test('Collection management failures cross RPC with translated, actionable remedies',()=>{
  for(const lang of ['fr','en']){
   setLanguage(lang);
