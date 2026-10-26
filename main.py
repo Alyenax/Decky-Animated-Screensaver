@@ -48,6 +48,15 @@ class Plugin:
         self.jsaux.player_relay=self.player_relay
         self.installer.delegation=self.jsaux
         self.service.after_prepare=self.jsaux.after_tv_prepare
+        # Decky schedules _main and its RPC server concurrently. Expose every
+        # dependency of _status() before the first await: on a Steam Deck,
+        # state/jsaux_refresh/update_status can arrive during initial discovery.
+        try:
+            self.updater=Updater(self.root.parent/'updates',Path(decky.DECKY_PLUGIN_DIR),VERSION,
+                blocked=lambda:bool(self._activity()['update_blockers']),install_lock=self._lock)
+        except (OSError,ValueError,UpdateError):
+            # A broken optional updater must not prevent TV/preview operation.
+            self.updater=UnavailableUpdater(VERSION)
         await asyncio.to_thread(self.installer.status,True)
         if self.jsaux.options['enabled'] and (self.installer.jsaux_export or {}).get('relay')==self.player_relay.descriptor():
             try:await asyncio.to_thread(self.player_relay.start)
@@ -55,12 +64,6 @@ class Plugin:
         # One bounded discovery at load, not a periodic background scan.
         await asyncio.to_thread(self.jsaux.refresh)
         self.jsaux.recover()
-        try:
-            self.updater=Updater(self.root.parent/'updates',Path(decky.DECKY_PLUGIN_DIR),VERSION,
-                blocked=lambda:bool(self._activity()['update_blockers']),install_lock=self._lock)
-        except (OSError,ValueError,UpdateError):
-            # A broken optional updater must not prevent TV/preview operation.
-            self.updater=UnavailableUpdater(VERSION)
         try:migrate_display_name(Path(decky.DECKY_PLUGIN_DIR))
         except (OSError,ValueError,UpdateError,ScreensaverError):self._event('display_name_migration_deferred')
         self.updater.start()
