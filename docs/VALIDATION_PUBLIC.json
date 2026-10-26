@@ -1,17 +1,37 @@
 {
   "schema": "das-public-release-validation-v1",
-  "version": "1.0.0",
-  "date": "2026-10-25",
+  "version": "1.0.1",
+  "date": "2026-10-26",
   "backend": {
-    "tests": 504,
-    "passed": 486,
+    "scope": "host-compatible suite; excludes 21 previously demonstrated host-blocked cases",
+    "tests": 500,
+    "passed": 482,
     "skipped": 18,
-    "failed": 0
+    "failed": 0,
+    "host_blocked": 21
   },
   "frontend": {
-    "passed": 91,
+    "passed": 94,
     "failed": 0
   },
+  "startup_and_setup": {
+    "tests": 16,
+    "python_versions": [
+      "3.10.22",
+      "3.12.14",
+      "3.14.8"
+    ],
+    "status": "passed"
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "hardware_acceptance": "Native Steam Deck LCD/OLED installation, controller focus, suspend/resume and physical playback still require target-device acceptance.",
+  "integration_skips": "18 optional tests require an explicit compatible GCA checkout or isolated video tools.",
+  "host_limitations": [
+    "AF_UNIX socket creation denied",
+    "Original owner PID observation is inconsistent on this host"
+  ],
+  "browser_acceptance": "Not completed; no Chromium executable available on this host.",
   "player": {
     "passed": 17,
     "failed": 0
@@ -19,19 +39,5 @@
   "player_debug": {
     "passed": 9,
     "failed": 0
-  },
-  "typecheck": "passed",
-  "build": "passed",
-  "documentation": {
-    "markdown_files": 23,
-    "html_pages": 17,
-    "local_links": 477,
-    "errors": [],
-    "media_hashes": 5,
-    "thumbnail_sources_verified": 12,
-    "em_dash_count": 0
-  },
-  "browser_still_motion": "not completed: browser process could not launch on this host",
-  "hardware_acceptance": "Native SteamOS/Decky focus, installation/restart and physical JSAUX playback require acceptance on the target devices.",
-  "integration_skips": "18 optional tests require an explicit compatible GCA checkout or isolated video tools."
+  }
 }

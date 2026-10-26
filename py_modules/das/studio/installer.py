@@ -176,6 +176,10 @@ class Installer:
 
     def install(self,language='en'):
         if self.delegation:
+            # Explicit installation must use current presence, not a saved GIF
+            # or a discovery from before GCA/the panel was removed.
+            refresh=getattr(self.delegation,'refresh',None)
+            if callable(refresh):refresh()
             blocker=self.delegation.installation_blocker()
             if blocker:
                 self.delegation.installation_event('installation-blocked')
@@ -207,6 +211,7 @@ class Installer:
                 raise ScreensaverError('Not enough export storage','storage_limit')
             catalog['bridge_token']=self.token; catalog['revision']='studio-1'
             jsaux=self.delegation.export() if self.delegation else None
+            if jsaux and (getattr(self.delegation,'detected',True) is False or getattr(self.delegation,'compatible',True) is False):jsaux=None
             published=False
             old_player=(old or {}).get('jsaux') or {}
             stage=None;backup=None;committed=False

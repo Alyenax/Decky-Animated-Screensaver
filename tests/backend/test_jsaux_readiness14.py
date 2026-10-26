@@ -50,10 +50,13 @@ class Readiness14Tests(unittest.TestCase):
 
     def test_absent_or_disabled_faceplate_does_not_block_tv_install(self):
         self.m.configure({'transition':'slide'})
-        self.m.detected=False
+        # Installation now refreshes presence itself: the broker fixture must
+        # report the absence, not only an overwritten cached UI flag.
+        self.f.fake.current['hardware']='absent'
         self.assertTrue(self.f.installer.install()['installed'])
+        self.assertFalse(self.m.detected)
         self.assertIsNone(self.f.installer.jsaux_export)
-        self.m.detected=True;self.m.configure({'enabled':False})
+        self.f.fake.current['hardware']='available';self.m.configure({'enabled':False})
         self.assertTrue(self.f.installer.install()['installed'])
         self.assertIsNone(self.f.installer.jsaux_export)
 

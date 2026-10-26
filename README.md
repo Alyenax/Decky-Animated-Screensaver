@@ -14,7 +14,7 @@ you can support its development on Ko-fi. Thank you! ❤️
 
 [![Support Decky Animated Screensaver on Ko-fi](docs/media/public/support-kofi.svg)](https://ko-fi.com/alyenax)
 
-[Download 1.0.0](https://github.com/Alyenax/Decky-Animated-Screensaver/releases/tag/v1.0.0) ·
+[Download 1.0.1](https://github.com/Alyenax/Decky-Animated-Screensaver/releases/tag/v1.0.1) ·
 [User guide](docs/wiki/Home.md) · [Changelog](CHANGELOG.md)
 
 ![Animated game artwork in the DAS player](docs/wiki/media/das-tv.gif)
@@ -32,7 +32,7 @@ Artwork credits: [TUFKAC, fewwan, Morente, jho and official Steam artwork](docs/
 
 ## Install
 
-Download `Decky-Animated-Screensaver-v1.0.0.zip` from the release page. In Decky
+Download `Decky-Animated-Screensaver-v1.0.1.zip` from the release page. In Decky
 Loader, enable Developer mode if needed, then use **Developer → Install plugin
 from ZIP** and select the archive. Open **Animated Screensaver** in Decky.
 See [Installation](docs/wiki/Installation.md) for the complete setup.

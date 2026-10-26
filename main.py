@@ -26,10 +26,23 @@ from das.studio.migration import start as import_gca_studio
 from das.studio.workspace import CollectionWorkspace
 from das.studio.discovery import Discovery,thumbnail,image_diagnostic
 
-VERSION='1.0.0'
+VERSION='1.0.1'
+
+def setup_failure(code):
+    return code in {'key_missing','ffmpeg_missing','ffprobe_missing','tools_missing',
+                    'decoder_missing','probe_failed','python_missing'} or code.startswith('steamgriddb_')
 
 class Plugin:
     async def _main(self):
+        self._startup_error=''
+        try:await self._initialize()
+        except Exception as error:
+            # Keep Decky's traceback while giving an already connected frontend
+            # an actionable state instead of an endless "starting" message.
+            self._startup_error='backend_storage' if isinstance(error,OSError) else 'backend_start_failed'
+            raise
+
+    async def _initialize(self):
         self._lock=threading.RLock();self._closed=False;self._running={};self._events=[];self._generation=None
         self.root=Path(decky.DECKY_PLUGIN_SETTINGS_DIR)/'library'
         recover_settings(self.root)
@@ -48,6 +61,15 @@ class Plugin:
         self.jsaux.player_relay=self.player_relay
         self.installer.delegation=self.jsaux
         self.service.after_prepare=self.jsaux.after_tv_prepare
+        # Decky schedules _main and its RPC server concurrently. Expose every
+        # dependency of _status() before the first await: on a Steam Deck,
+        # state/jsaux_refresh/update_status can arrive during initial discovery.
+        try:
+            self.updater=Updater(self.root.parent/'updates',Path(decky.DECKY_PLUGIN_DIR),VERSION,
+                blocked=lambda:bool(self._activity()['update_blockers']),install_lock=self._lock)
+        except (OSError,ValueError,UpdateError):
+            # A broken optional updater must not prevent TV/preview operation.
+            self.updater=UnavailableUpdater(VERSION)
         await asyncio.to_thread(self.installer.status,True)
         if self.jsaux.options['enabled'] and (self.installer.jsaux_export or {}).get('relay')==self.player_relay.descriptor():
             try:await asyncio.to_thread(self.player_relay.start)
@@ -55,12 +77,6 @@ class Plugin:
         # One bounded discovery at load, not a periodic background scan.
         await asyncio.to_thread(self.jsaux.refresh)
         self.jsaux.recover()
-        try:
-            self.updater=Updater(self.root.parent/'updates',Path(decky.DECKY_PLUGIN_DIR),VERSION,
-                blocked=lambda:bool(self._activity()['update_blockers']),install_lock=self._lock)
-        except (OSError,ValueError,UpdateError):
-            # A broken optional updater must not prevent TV/preview operation.
-            self.updater=UnavailableUpdater(VERSION)
         try:migrate_display_name(Path(decky.DECKY_PLUGIN_DIR))
         except (OSError,ValueError,UpdateError,ScreensaverError):self._event('display_name_migration_deferred')
         self.updater.start()
@@ -123,11 +139,23 @@ class Plugin:
         return state
 
     async def studio(self,action:str,payload:dict=None):
-        if not hasattr(self,'service') or self._closed:raise ValueError('Screensaver is starting or stopping. Try again.')
+        # Decky may admit an RPC before _main runs or after a synchronous
+        # initialization failure. Never expose a partially constructed service.
+        startup_error=getattr(self,'_startup_error','')
+        if startup_error or not hasattr(self,'updater') or self._closed:
+            return dict(schema='das-action-error-v1',ok=False,
+                error='backend_stopping' if getattr(self,'_closed',False) else startup_error or 'backend_starting')
         payload={} if payload is None else payload
         if not isinstance(action,str) or not isinstance(payload,dict) or len(json.dumps(payload))>8192:raise ValueError('Invalid request')
-        if action=='jsaux_player':return await asyncio.to_thread(self.jsaux.player,payload)
-        return await asyncio.to_thread(self._apply,action,payload)
+        try:
+            if action=='jsaux_player':return await asyncio.to_thread(self.jsaux.player,payload)
+            return await asyncio.to_thread(self._apply,action,payload)
+        except ScreensaverError as error:
+            if not setup_failure(error.code):raise
+            # Expected prerequisites must survive Decky's opaque exception
+            # transport, including controls handled outside _apply's lock.
+            self._event('request_error',code=error.code)
+            return dict(schema='das-action-error-v1',ok=False,error=error.code)
 
     def _apply(self,action,payload):
         if action=='close_preview':
@@ -332,7 +360,9 @@ class Plugin:
                     return result
                 elif action=='save_key':
                     if service._busy():raise ValueError('Pause preparation before changing the key')
-                    self.provider.save(payload.get('key'));service.refresh_key_state()
+                    try:self.provider.save(payload.get('key'))
+                    except (ValueError,TypeError):raise ScreensaverError('Invalid SteamGridDB key','steamgriddb_invalid_key') from None
+                    service.refresh_key_state()
                 elif action=='validate_key':service.validate_key()
                 elif action=='search':return service.search(payload.get('query',''))
                 elif action=='add':service.add(payload.get('id'))
@@ -405,6 +435,7 @@ class Plugin:
                 else:raise ValueError('Unknown action')
                 return self._status()
             except (ScreensaverError,BrokerError,UpdateError) as error:
+                if isinstance(error,ScreensaverError) and setup_failure(error.code):raise
                 self._event('request_error',code=error.code)
                 # Decky replaces Python exception messages with a generic
                 # "Unexpected error". Carry this expected admission refusal

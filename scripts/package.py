@@ -10,7 +10,7 @@ VERSION=json.loads((ROOT/'package.json').read_text())['version']
 
 def main():
     if not (ROOT/'dist/index.js').is_file():raise SystemExit('Build the frontend first')
-    files=[ROOT/'docs/VALIDATION_PUBLIC.json',ROOT/'docs/NATIVE_STEAM_UI.md',ROOT/'docs/RELEASE_NOTES_1.0.0.md']
+    files=[ROOT/'docs/VALIDATION_PUBLIC.json',ROOT/'docs/NATIVE_STEAM_UI.md',ROOT/f'docs/RELEASE_NOTES_{VERSION}.md']
     files += [ROOT/name for name in ('plugin.json','package.json','main.py','README.md','CHANGELOG.md','LICENSE','pnpm-lock.yaml','rollup.config.js','tsconfig.json')]
     # Source included alongside the compiled bundle for GPL correspondence.
     for folder in ('dist','assets','licenses','py_modules','src'):
